@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/css_base.01.css">
+    <title>site-01</title>
+</head>
+<body>
+    <!-- menu da primeira pagina -->
+    <nav>
+        <div>
+            <a href="base_01.html">bio</a> |
+            <a href="base_02.html">portfólio</a> |
+            <a href="base_03.html">feedbacks</a> |
+            <a href="base_04.html">contato</a> 
+        </div>
+    </nav>
+    <br>
+    <!-- Conteúdo da página -->
+   <section class="foto">
+    <img src="/imagens/foto profissional da mamae.jpeg" alt="foto profissional de camila" width="200" height="200">
+    </section>
+    <h1>Camila Bueno</h1>
+    <h4>Educação | Treinamento & Desenvolvimento Profissional |Palestrante</h4>
+    <p>Ao longo da minha trajetória na Educação, desenvolvi habilidades fundamentais para o desenvolvimento de pessoas, sempre guiada por um olhar humanizado e estratégico. Atuei na formação de alunos e profissionais em diferentes níveis de ensino — da educação básica à educação técnica e corporativa —, com foco em metodologias inovadoras, inclusão e desenvolvimento de competências.</p>
+    <p>Acredito que o saber promove mudanças no indivíduo e que ele, por sua vez, transforma os ambientes. Foi nesse caminho que descobri minha paixão: potencializar talentos e impulsionar mudanças reais.</p>
+    <p>✨ 🛤️ A gente pode mudar o caminho, mas não o sonho!
+Se você acredita no poder da educação como instrumento de transformação, estamos na mesma direção. Vamos nos conectar?</p> 
+<br>
+    
+    <!-- Carrossel com controles -->
+    <div class="portfolio-carousel">
+        <div class="portfolio-carousel-inner">
+            <div class="portfolio-carousel-item">
+                <img src="/imagens/foto aleatoria1.jpg" alt="Projeto 1">
+            </div>
+            <div class="portfolio-carousel-item">
+                <img src="/imagens/foto aleatoria2.jpg" alt="Projeto 2">
+            </div>
+            <div class="portfolio-carousel-item">
+                <img src="/imagens/foto aleatoria3.jpg" alt="Projeto 3">
+            </div>
+        </div>
+        
+        <!-- Botões de navegação -->
+        <button class="carousel-btn prev">‹</button>
+        <button class="carousel-btn next">›</button>
+        
+        <!-- Indicadores -->
+        <div class="carousel-indicators">
+            <button class="carousel-indicator active" data-index="0"></button>
+            <button class="carousel-indicator" data-index="1"></button>
+            <button class="carousel-indicator" data-index="2"></button>
+        </div>
+    </div>
+
+    <script>
+        class Carousel {
+            constructor() {
+                this.carousel = document.querySelector('.portfolio-carousel');
+                this.inner = document.querySelector('.portfolio-carousel-inner');
+                this.items = document.querySelectorAll('.portfolio-carousel-item');
+                this.prevBtn = document.querySelector('.carousel-btn.prev');
+                this.nextBtn = document.querySelector('.carousel-btn.next');
+                this.indicators = document.querySelectorAll('.carousel-indicator');
+                
+                this.currentIndex = 0;
+                this.totalItems = this.items.length;
+                
+                this.init();
+            }
+            
+            init() {
+                // Event listeners para os botões
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                
+                // Event listeners para os indicadores
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                });
+                
+                // Atualizar estado inicial
+                this.updateIndicators();
+            }
+            
+            next() {
+                this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            prev() {
+                this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateCarousel();
+            }
+            
+            updateCarousel() {
+                const translateX = -this.currentIndex * 100;
+                this.inner.style.transform = `translateX(${translateX}%)`;
+                this.updateIndicators();
+            }
+            
+            updateIndicators() {
+                this.indicators.forEach((indicator, index) => {
+                    if (index === this.currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+        }
+        
+        // Inicializar o carrossel quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new Carousel();
+        });
+    </script>
+    <h2>Contato</h2>
+<p>Ou me seguir nas redes sociais:</p> 
+<section class="redes-sociais"> 
+<a href="https://www.linkedin.com/in/camila-bueno-30136b57/"> <img src="/imagens/10464412.png" alt="logo do linkedin" width="60" height="60"> 
+<a href="https://www.instagram.com/psico_camilabueno/"> <img src="/imagens/Instagram-Logo-social-media-transparent-PNG-image-1.png" alt="logo do instagram" width="60" height="60">
+</a>
+<a href="https://wa.me/5516991760805"> <img src="/imagens/430487-PE6A3G-350.jpg" alt="logo do WhatsApp" width="60" height="60">
+</a>
+</section>
+</body>
+</html>
